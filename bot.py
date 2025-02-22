@@ -5,8 +5,8 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 load_dotenv()
 
-access_token = os.getenv('ACCESS_TOKEN')
-bot_username = os.getenv('BOT_USERNAME')
+access_token = os.getenv('TUSHAR_BOT_ACCESS_TOKEN')
+# bot_username = os.getenv('BOT_USERNAME')
 
 # Commands
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -26,15 +26,18 @@ def handle_response(text: str):
 
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print(update)
     message_type: str = update.message.chat.type
     text: str = update.message.text
-    print('here',text)
 
-    if message_type == 'private':
-        response = handle_response(text)
-    else:
-        print(text)
-        return
+    print(f'Text: {text}\nType: {message_type}')
+    return
+    response = 'responding'
+
+    # if message_type == 'private':
+    #     response = handle_response(text) + ' to private text'
+    # else:
+    #     response = handle_response(text) + ' to group text'
     # elif bot_username in text:
     #     new_text = text.replace(bot_username, '').strip()
     #     response = handle_response(new_text)
